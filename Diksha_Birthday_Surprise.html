@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>শুভ জন্মদিন, দীক্ষা ❤️</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"Noto Sans Bengali","Nirmala UI","Vrinda",sans-serif}
+body{
+  background:radial-gradient(circle at 20% 10%,#ffb6d9 0,#f46b9d 25%,#5c1648 70%,#16091d 100%);
+  color:#fff;overflow-x:hidden
+}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:0}
+.container{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
+.card{
+  width:min(760px,100%);padding:34px 26px 30px;border:1px solid rgba(255,255,255,.25);
+  background:rgba(35,5,30,.58);backdrop-filter:blur(16px);border-radius:30px;
+  box-shadow:0 25px 80px rgba(0,0,0,.35);text-align:center
+}
+.badge{display:inline-block;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.13);font-size:13px;letter-spacing:.5px}
+h1{font-size:clamp(34px,8vw,64px);margin:18px 0 6px;line-height:1.1}
+.nickname{color:#ffd3e7;font-size:20px;margin:0 0 22px}
+.heart{display:inline-block;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.18)}}
+.message{text-align:left;font-size:18px;line-height:2;background:rgba(255,255,255,.08);border-radius:22px;padding:22px;margin:22px 0}
+.message p{margin:0 0 13px}.message p:last-child{margin:0}
+button{
+  border:0;border-radius:999px;padding:14px 22px;font-size:16px;cursor:pointer;
+  background:#fff;color:#8b245e;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.2)
+}
+button:active{transform:scale(.97)}
+.surprise{max-height:0;overflow:hidden;transition:max-height .8s ease;margin-top:0}
+.surprise.open{max-height:500px;margin-top:20px}
+.secret{padding:20px;border-radius:20px;background:rgba(255,190,220,.12);border:1px solid rgba(255,255,255,.16);font-size:19px;line-height:1.8}
+.footer{margin-top:22px;font-size:13px;opacity:.7}
+.floating{position:fixed;bottom:-30px;font-size:20px;animation:float 8s linear forwards;z-index:1;pointer-events:none}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="container">
+  <main class="card">
+    <div class="badge">A little birthday surprise from Pritam</div>
+    <h1>শুভ জন্মদিন, দীক্ষা <span class="heart">❤️</span></h1>
+    <div class="nickname">আমার হোদলা ❤️</div>
+
+    <section class="message">
+      <p>শুভ জন্মদিন দীক্ষা❤️। তুমি সবটাই জানো কখন কিভাবে তোমাকে ভালো বেসেছি, বরং হয়তো দিন বাড়ছে আর আমি আরও তোমার মধ্যে হারিয়ে যাচ্ছি। ভালো লাগছে বা সত্যি বললে খুবই ভালো লাগছে।</p>
+      <p>আজকে তোমার সেই শুভ দিন কিন্তু আমার মনে হচ্ছে আমার কাছে অনেক বড় একটা দিন। চিন্তা নেই, দেখা হবে। শুধু আবহাওয়া একটু সাথে থাকলেই ভালো।</p>
+      <p>যাই হোক, তুমি আমাকে ভালোবাসবে হয়তো আরও যত দিন যাবে, একে অপরের সাথে আরও চেনা-জানা বাড়বে। একটা ছোট্ট আবদার, আমি একটু বদমাশি করে ফেলি, আর পরে তুমি ওইদিন আর কিছু বলতে চাও না, রাগ দেখিয়ে অভিমান দেখিয়ে যদি তুমি আমাকে খুলে বলো তাহলে বেশি ভালো হয় আমাদের দুজনের জন্যে।</p>
+      <p>অনেক কিছুই বলতে পারব এরকম লিখতে শুরু করলে, তবে এখানেই আপাতত থামছি। খুব ভালো করে কাটাও সারা জীবন আর আমার সাথেই কাটাও—এটাই চাই। অনেক অনেক অনেক ভালোবাসা থাকলো, থাকবে আমার থেকে সব সময়❤️❤️।</p>
+    </section>
+
+    <button id="btn">🎁 একটা ছোট্ট surprise আছে</button>
+    <div class="surprise" id="surprise">
+      <div class="secret">
+        <strong>হোদলা, এটা শুধু তোমার জন্য। ❤️</strong><br>
+        আজকের দিনটা তোমার জন্মদিন বলে বিশেষ না—<br>
+        তুমি আমার জীবনে আছো বলেই দিনটা বিশেষ।<br><br>
+        <span>— তোমার পাগল, Pritam ❤️</span>
+      </div>
+    </div>
+    <div class="footer">Made with ❤️, a little code, and a lot of love.</div>
+  </main>
+</div>
+
+<script>
+const canvas=document.getElementById('confetti'),ctx=canvas.getContext('2d');
+let pieces=[];
+function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+addEventListener('resize',resize);resize();
+for(let i=0;i<120;i++) pieces.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight- innerHeight,w:5+Math.random()*7,h:3+Math.random()*5,v:1+Math.random()*3,r:Math.random()*6.28});
+function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of pieces){p.y+=p.v;p.r+=.04;if(p.y>innerHeight+20){p.y=-20;p.x=Math.random()*innerWidth}ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=`hsla(${Math.random()*360},90%,75%,.75)`;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()}requestAnimationFrame(draw)}
+draw();
+
+document.getElementById('btn').onclick=()=>{
+  document.getElementById('surprise').classList.toggle('open');
+  for(let i=0;i<25;i++){
+    const e=document.createElement('div');e.className='floating';e.textContent=['❤️','💗','💕','✨'][Math.floor(Math.random()*4)];
+    e.style.left=Math.random()*100+'vw';e.style.animationDuration=(4+Math.random()*4)+'s';
+    document.body.appendChild(e);setTimeout(()=>e.remove(),8000);
+  }
+};
+</script>
+</body>
+</html>
